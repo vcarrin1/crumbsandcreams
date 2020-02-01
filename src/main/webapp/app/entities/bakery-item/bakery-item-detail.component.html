@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bakeryItem">
+            <h2><span>Bakery Item</span> {{bakeryItem.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Item</span></dt>
+                <dd>
+                    <span>{{bakeryItem.item}}</span>
+                </dd>
+                <dt><span>Item Image</span></dt>
+                <dd>
+                    <div *ngIf="bakeryItem.itemImage">
+                        <a (click)="openFile(bakeryItem.itemImageContentType, bakeryItem.itemImage)">
+                            <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-width: 100%;" alt="bakeryItem image"/>
+                        </a>
+                        {{bakeryItem.itemImageContentType}}, {{byteSize(bakeryItem.itemImage)}}
+                    </div>
+                </dd>
+                <dt><span>Create Date</span></dt>
+                <dd>
+                    <span>{{bakeryItem.createDate}}</span>
+                </dd>
+                <dt><span>Last Update</span></dt>
+                <dd>
+                    <span>{{bakeryItem.lastUpdate}}</span>
+                </dd>
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{bakeryItem.description}}</span>
+                </dd>
+                <dt><span>Price</span></dt>
+                <dd>
+                    <span>{{bakeryItem.price}}</span>
+                </dd>
+                <dt><span>Category</span></dt>
+                <dd>
+                    <span>{{bakeryItem.category}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bakery-item', bakeryItem.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

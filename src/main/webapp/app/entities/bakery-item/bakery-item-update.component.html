@@ -1,0 +1,104 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-bakery-item-heading">Create or edit a Bakery Item</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!bakeryItem.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="bakeryItem.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_item">Item</label>
+                    <input type="text" class="form-control" name="item" id="field_item"
+                        [(ngModel)]="bakeryItem.item" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_itemImage">Item Image</label>
+                    <div>
+                        <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-height: 100px;" *ngIf="bakeryItem.itemImage" alt="bakeryItem image"/>
+                        <div *ngIf="bakeryItem.itemImage" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{bakeryItem.itemImageContentType}}, {{byteSize(bakeryItem.itemImage)}}</span>
+                            <button type="button" (click)="clearInputImage('itemImage', 'itemImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_itemImage" (change)="setFileData($event, bakeryItem, 'itemImage', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="itemImage" id="field_itemImage"
+                        [(ngModel)]="bakeryItem.itemImage" />
+                    <input type="hidden" class="form-control" name="itemImageContentType" id="field_itemImageContentType"
+                        [(ngModel)]="bakeryItem.itemImageContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_createDate">Create Date</label>
+                    <div class="d-flex">
+                        <input id="field_createDate" type="datetime-local" class="form-control" name="createDate" [(ngModel)]="createDate"
+                        required/>
+                    </div>
+                    <div [hidden]="!(editForm.controls.createDate?.dirty && editForm.controls.createDate?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.createDate?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.createDate?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_lastUpdate">Last Update</label>
+                    <div class="d-flex">
+                        <input id="field_lastUpdate" type="datetime-local" class="form-control" name="lastUpdate" [(ngModel)]="lastUpdate"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                        [(ngModel)]="bakeryItem.description" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="bakeryItem.price" min="0" jhiMin="0"/>
+                    <div [hidden]="!(editForm.controls.price?.dirty && editForm.controls.price?.invalid)">
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.price?.errors?.min">
+                            This field should be at least 0.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.price?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_category">Category</label>
+                    <select class="form-control" name="category" [(ngModel)]="bakeryItem.category" id="field_category"  required>
+                        <option value="cupcakes">cupcakes</option>
+                        <option value="brownies">brownies</option>
+                        <option value="drizzle_cakes">drizzle_cakes</option>
+                    </select>
+                    <div [hidden]="!(editForm.controls.category?.dirty && editForm.controls.category?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.category?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

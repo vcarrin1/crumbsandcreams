@@ -1,0 +1,79 @@
+<div>
+    <h2 id="page-heading">
+        <span>Bakery Items</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bakery-item" [routerLink]="['/bakery-item/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Bakery Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="bakeryItems">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="item"><span>Item</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="itemImage"><span>Item Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="createDate"><span>Create Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="lastUpdate"><span>Last Update</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span>Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="price"><span>Price</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="category"><span>Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let bakeryItem of bakeryItems ;trackBy: trackId">
+                <td><a [routerLink]="['/bakery-item', bakeryItem.id, 'view' ]">{{bakeryItem.id}}</a></td>
+                <td>{{bakeryItem.item}}</td>
+                <td>
+                    <a *ngIf="bakeryItem.itemImage" (click)="openFile(bakeryItem.itemImageContentType, bakeryItem.itemImage)">
+                        <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-height: 30px;" alt="bakeryItem image"/>
+                    </a>
+                    <span *ngIf="bakeryItem.itemImage">{{bakeryItem.itemImageContentType}}, {{byteSize(bakeryItem.itemImage)}}</span>
+                </td>
+                <td>{{bakeryItem.createDate | date:'medium'}}</td>
+                <td>{{bakeryItem.lastUpdate | date:'medium'}}</td>
+                <td>{{bakeryItem.description}}</td>
+                <td>{{bakeryItem.price}}</td>
+                <td>{{bakeryItem.category}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/bakery-item', bakeryItem.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/bakery-item', bakeryItem.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'bakery-item/'+ bakeryItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="bakeryItems && bakeryItems.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

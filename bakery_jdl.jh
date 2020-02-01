@@ -1,0 +1,16 @@
+entity BakeryItem {
+	item String,
+	itemImage ImageBlob,
+    createDate Instant required,
+    lastUpdate Instant,
+    description String,
+    price BigDecimal min(0),
+    category Categories required
+}
+
+enum Categories {
+    cupcakes, brownies, drizzle_cakes
+}
+
+paginate BakeryItem with pagination
+
