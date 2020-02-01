@@ -1,0 +1,35 @@
+<div class="row mb-4">
+
+    <div class="col-md-6 mt-4">
+        <div class="card mb-4 card-container" *ngFor="let item of bakeryItemsCol1" (click)="navigateToItemDetails(item.id)">
+            <div class="row no-gutters">
+                <div class="col-auto" style="width: 180px">
+                    <img class="card-img-bottom" [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" alt="bakeryItem image"/>
+                </div>
+                <div class="col w-75">
+                    <div class="card-block px-4 pt-4">
+                        <h4 class="card-title">{{item.item}}</h4>
+                        <p class="card-text">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 mt-4">
+        <div class="card mb-4 card-container" *ngFor="let item of bakeryItemsCol2" (click)="navigateToItemDetails(item.id)">
+            <div class="row no-gutters">
+                <div class="col-auto" style="width: 180px">
+                    <img class="card-img-top" [src]="'data:' + item.itemImageContentType + ';base64,' + item.itemImage" alt="bakeryItem image"/>
+                </div>
+                <div class="col w-75">
+                    <div class="card-block px-2 pt-4">
+                        <h4 class="card-title">{{item.item}}</h4>
+                        <p class="card-text">{{item.description}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

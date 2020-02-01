@@ -3,7 +3,7 @@ entity BakeryItem {
 	itemImage ImageBlob,
     createDate Instant required,
     lastUpdate Instant,
-    description String,
+    description TextBlob,
     price BigDecimal min(0),
     category Categories required
 }

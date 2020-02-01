@@ -1,0 +1,50 @@
+<div class="row pt-5" *ngIf="bakeryItem">
+    <div class="row content-container">
+        <div class="col-4">
+            <div *ngIf="bakeryItem.itemImage" class="border">
+                <a (click)="openFile(bakeryItem.itemImageContentType, bakeryItem.itemImage)">
+                    <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-width: 100%;" alt="bakeryItem image"/>
+                </a>
+                <span *jhiHasAnyAuthority="'ROLE_ADMIN'">{{bakeryItem.itemImageContentType}}, {{byteSize(bakeryItem.itemImage)}}</span>
+            </div>
+        </div>
+        <div class="col-6">
+            <div *ngIf="bakeryItem">
+                <h2><span>Bakery Item</span>: {{bakeryItem.item}}</h2>
+                <hr>
+                <jhi-alert-error></jhi-alert-error>
+                <dl class="row-md jh-entity-details">
+                    <dt><span>Item</span></dt>
+                    <dd>
+                        <span>{{bakeryItem.item}}</span>
+                    </dd>
+                    <dt><span>Description</span></dt>
+                    <dd>
+                        <span>{{bakeryItem.description}}</span>
+                    </dd>
+                    <dt><span>Price</span></dt>
+                    <dd>
+                        <span>${{bakeryItem.price}}/each</span>
+                    </dd>
+                    <dt><span>Category</span></dt>
+                    <dd>
+                        <span>{{bakeryItem.category}}</span>
+                    </dd>
+                </dl>
+
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-info">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+                </button>
+
+                <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="button"
+                        [routerLink]="['/bakery-item', bakeryItem.id, 'edit']"
+                        class="btn btn-primary">
+                    <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+

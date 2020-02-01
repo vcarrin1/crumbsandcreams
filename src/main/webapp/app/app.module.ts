@@ -18,6 +18,9 @@ import { CrumbsandcreamAccountModule } from './account/account.module';
 import { CrumbsandcreamEntityModule } from './entities/entity.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { CrumbsandcreamAppBakeryDetailsModule } from 'app/bakery-details';
+import { CrumbsandcreamAppMenuModule } from 'app/menu';
+import { CrumbsandcreamAppAboutModule } from 'app/about';
 
 @NgModule({
     imports: [
@@ -28,7 +31,10 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
         CrumbsandcreamCoreModule,
         CrumbsandcreamHomeModule,
         CrumbsandcreamAccountModule,
-        CrumbsandcreamEntityModule
+        CrumbsandcreamEntityModule,
+        CrumbsandcreamAppAboutModule,
+        CrumbsandcreamAppMenuModule,
+        CrumbsandcreamAppBakeryDetailsModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent],

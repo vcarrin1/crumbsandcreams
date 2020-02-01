@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+    <h1 class="text-capitalize text-center pt-4">Menu</h1>
+    <hr/>
+
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link" [routerLink]="['/menu/cupcakes']">cupcakes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/menu/brownies']">brownies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/menu/drizzle_cakes']">drizzle_cakes</a>
+      </li>
+    </ul>
+
+    <jhi-bakery-items></jhi-bakery-items>
+
+  </div>
+  <div class="col-md-1"></div>
+</div>

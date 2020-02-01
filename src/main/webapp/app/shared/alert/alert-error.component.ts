@@ -6,12 +6,13 @@ import { Subscription } from 'rxjs';
     selector: 'jhi-alert-error',
     template: `
         <div class="alerts" role="alert">
-            <div *ngFor="let alert of alerts"  [ngClass]="{\'alert.position\': true, \'toast\': alert.toast}">
+            <div *ngFor="let alert of alerts" [ngClass]="{'alert.position': true, 'toast': alert.toast}">
                 <ngb-alert *ngIf="alert && alert.type && alert.msg" [type]="alert.type" (close)="alert.close(alerts)">
                     <pre [innerHTML]="alert.msg"></pre>
                 </ngb-alert>
             </div>
-        </div>`
+        </div>
+    `
 })
 export class JhiAlertErrorComponent implements OnDestroy {
     alerts: any[];
@@ -51,7 +52,7 @@ export class JhiAlertErrorComponent implements OnDestroy {
                             // convert 'something[14].other[4].id' to 'something[].other[].id' so translations can be written to it
                             const convertedField = fieldError.field.replace(/\[\d*\]/g, '[]');
                             const fieldName = convertedField.charAt(0).toUpperCase() + convertedField.slice(1);
-                            this.addErrorAlert('Error on field "' + fieldName + '"', 'error.' + fieldError.message, { fieldName });
+                            // this.addErrorAlert('Error on field '' + fieldName + ''', 'error.' + fieldError.message, { fieldName });
                         }
                     } else if (httpErrorResponse.error !== '' && httpErrorResponse.error.message) {
                         this.addErrorAlert(
