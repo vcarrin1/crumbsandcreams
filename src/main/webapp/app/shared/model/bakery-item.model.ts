@@ -13,7 +13,7 @@ export interface IBakeryItem {
     itemImage?: any;
     createDate?: Moment;
     lastUpdate?: Moment;
-    description?: string;
+    description?: any;
     price?: number;
     category?: Categories;
 }
@@ -26,7 +26,7 @@ export class BakeryItem implements IBakeryItem {
         public itemImage?: any,
         public createDate?: Moment,
         public lastUpdate?: Moment,
-        public description?: string,
+        public description?: any,
         public price?: number,
         public category?: Categories
     ) {}

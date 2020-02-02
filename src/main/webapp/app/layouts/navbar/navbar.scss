@@ -8,8 +8,10 @@ Navbar
 }
 
 .jh-navbar {
-    background-color: #353d47;
+    //background-color: #353d47;
     padding: 0.2em 1em;
+    border-bottom: 1px solid #7f7f7f;
+    box-shadow: 0 0 10px 0 #888888;
     .profile-image {
         margin: -10px 0px;
         height: 40px;
@@ -32,6 +34,7 @@ Navbar
     }
     a.nav-link {
         font-weight: 400;
+        color: #3c2313;
     }
     .jh-navbar-toggler {
         color: #ccc;
@@ -58,6 +61,10 @@ Navbar
 .navbar-title {
     display: inline-block;
     vertical-align: middle;
+    color: #3c2313;
+    padding-left: 10px;
+    font-family: 'Kaushan Script';
+    font-size: 26px;
 }
 
 /* ==========================================================================
@@ -65,10 +72,12 @@ Logo styles
 ========================================================================== */
 .navbar-brand {
     &.logo {
-        padding: 5px 15px;
+        padding: 5px 15px 5px 65px;
         .logo-img {
-            height: 45px;
-            width: 70px;
+            border-radius: 50%;
+            //border: 1px solid #3c2313;
+            height: 75px;
+            width: 75px;
             display: inline-block;
             vertical-align: middle;
             background: url('../../../content/logo/bakery_logo.png') no-repeat center center;

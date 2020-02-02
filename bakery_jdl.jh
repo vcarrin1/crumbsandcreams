@@ -9,7 +9,7 @@ entity BakeryItem {
 }
 
 enum Categories {
-    cupcakes, brownies, drizzle_cakes
+    cupcakes, brownies, drizzle_cakes, cookies
 }
 
 paginate BakeryItem with pagination
