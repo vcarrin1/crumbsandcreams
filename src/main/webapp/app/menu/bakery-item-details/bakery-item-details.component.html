@@ -5,7 +5,6 @@
                 <a (click)="openFile(bakeryItem.itemImageContentType, bakeryItem.itemImage)">
                     <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-width: 100%;" alt="bakeryItem image"/>
                 </a>
-                <span *jhiHasAnyAuthority="'ROLE_ADMIN'">{{bakeryItem.itemImageContentType}}, {{byteSize(bakeryItem.itemImage)}}</span>
             </div>
         </div>
         <div class="col-sm-12 col-md-6">

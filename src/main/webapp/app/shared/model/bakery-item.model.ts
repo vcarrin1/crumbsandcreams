@@ -3,7 +3,8 @@ import { Moment } from 'moment';
 export const enum Categories {
     cupcakes = 'cupcakes',
     brownies = 'brownies',
-    drizzle_cakes = 'drizzle_cakes'
+    drizzle_cakes = 'drizzle_cakes',
+    cookies = 'cookies'
 }
 
 export interface IBakeryItem {
