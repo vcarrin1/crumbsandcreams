@@ -1,33 +1,32 @@
-<div class="row pt-5" *ngIf="bakeryItem">
+<div class="row bg-light pt-5" style="min-height: 450px" *ngIf="bakeryItem">
     <div class="row content-container">
         <div class="col-sm-12 col-md-4">
             <div *ngIf="bakeryItem.itemImage" class="image-box">
                 <a (click)="openFile(bakeryItem.itemImageContentType, bakeryItem.itemImage)">
-                    <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage" style="max-width: 100%;" alt="bakeryItem image"/>
+                    <img [src]="'data:' + bakeryItem.itemImageContentType + ';base64,' + bakeryItem.itemImage"  alt="bakeryItem image"/>
                 </a>
             </div>
         </div>
         <div class="col-sm-12 col-md-6">
             <div *ngIf="bakeryItem">
-                <h2><span>Bakery Item</span>: {{bakeryItem.item}}</h2>
-                <hr>
+                <span *ngIf="bakeryItem.category === 'cupcakes'" class="float-left">
+                    <img src="../../../content/images/cupcake_icon.png" alt="cupcake icon" style="max-width: 50px"/>
+                </span>
+                <span *ngIf="bakeryItem.category === 'brownies'" class="float-left">
+                    <img src="../../../content/images/brownie_Icon.png" alt="brownie icon" style="max-width: 50px"/>
+                </span>
+                <span *ngIf="bakeryItem.category === 'cookies'" class="float-left">
+                    <img src="../../../content/images/cookie_icon.png" alt="cookie icon" style="max-width: 50px"/>
+                </span>
+                <h2 class="pt-2 pl-2">{{bakeryItem.item}}</h2>
+                <hr style="background-color: rgba(98, 69, 69, 0.8)">
                 <jhi-alert-error></jhi-alert-error>
                 <dl class="row-md jh-entity-details">
-                    <dt><span>Item</span></dt>
-                    <dd>
-                        <span>{{bakeryItem.item}}</span>
+                    <dd *ngIf="bakeryItem.price">
+                        <span class="font-weight-bold">${{bakeryItem.price}}/each</span>
                     </dd>
-                    <dt><span>Description</span></dt>
                     <dd>
                         <span>{{bakeryItem.description}}</span>
-                    </dd>
-                    <dt><span>Price</span></dt>
-                    <dd>
-                        <span>${{bakeryItem.price}}/each</span>
-                    </dd>
-                    <dt><span>Category</span></dt>
-                    <dd>
-                        <span>{{bakeryItem.category}}</span>
                     </dd>
                 </dl>
 
