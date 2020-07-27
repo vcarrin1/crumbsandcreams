@@ -50,6 +50,9 @@ public class BakeryItem implements Serializable {
     @Field("category")
     private Categories category;
 
+    @Field("ingredients")
+    private String ingredients;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
         return id;
@@ -162,6 +165,19 @@ public class BakeryItem implements Serializable {
     public void setCategory(Categories category) {
         this.category = category;
     }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public BakeryItem ingredients(String ingredients) {
+        this.ingredients = ingredients;
+        return this;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -196,6 +212,7 @@ public class BakeryItem implements Serializable {
             ", description='" + getDescription() + "'" +
             ", price=" + getPrice() +
             ", category='" + getCategory() + "'" +
+            ", ingredients='" + getIngredients() + "'" +
             "}";
     }
 }

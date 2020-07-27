@@ -65,6 +65,9 @@ public class BakeryItemResourceIntTest {
     private static final Categories DEFAULT_CATEGORY = Categories.cupcakes;
     private static final Categories UPDATED_CATEGORY = Categories.brownies;
 
+    private static final String DEFAULT_INGREDIENTS = "AAAAAAAAAA";
+    private static final String UPDATED_INGREDIENTS = "BBBBBBBBBB";
+
     @Autowired
     private BakeryItemRepository bakeryItemRepository;
 
@@ -108,7 +111,8 @@ public class BakeryItemResourceIntTest {
             .lastUpdate(DEFAULT_LAST_UPDATE)
             .description(DEFAULT_DESCRIPTION)
             .price(DEFAULT_PRICE)
-            .category(DEFAULT_CATEGORY);
+            .category(DEFAULT_CATEGORY)
+            .ingredients(DEFAULT_INGREDIENTS);
         return bakeryItem;
     }
 
@@ -140,6 +144,7 @@ public class BakeryItemResourceIntTest {
         assertThat(testBakeryItem.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testBakeryItem.getPrice()).isEqualTo(DEFAULT_PRICE);
         assertThat(testBakeryItem.getCategory()).isEqualTo(DEFAULT_CATEGORY);
+        assertThat(testBakeryItem.getIngredients()).isEqualTo(DEFAULT_INGREDIENTS);
     }
 
     @Test
@@ -211,7 +216,8 @@ public class BakeryItemResourceIntTest {
             .andExpect(jsonPath("$.[*].lastUpdate").value(hasItem(DEFAULT_LAST_UPDATE.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.intValue())))
-            .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())));
+            .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())))
+            .andExpect(jsonPath("$.[*].ingredients").value(hasItem(DEFAULT_INGREDIENTS.toString())));
     }
     
 
@@ -232,7 +238,8 @@ public class BakeryItemResourceIntTest {
             .andExpect(jsonPath("$.lastUpdate").value(DEFAULT_LAST_UPDATE.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.intValue()))
-            .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()));
+            .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()))
+            .andExpect(jsonPath("$.ingredients").value(DEFAULT_INGREDIENTS.toString()));
     }
     @Test
     public void getNonExistingBakeryItem() throws Exception {
@@ -258,7 +265,8 @@ public class BakeryItemResourceIntTest {
             .lastUpdate(UPDATED_LAST_UPDATE)
             .description(UPDATED_DESCRIPTION)
             .price(UPDATED_PRICE)
-            .category(UPDATED_CATEGORY);
+            .category(UPDATED_CATEGORY)
+            .ingredients(UPDATED_INGREDIENTS);
 
         restBakeryItemMockMvc.perform(put("/api/bakery-items")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -277,6 +285,7 @@ public class BakeryItemResourceIntTest {
         assertThat(testBakeryItem.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testBakeryItem.getPrice()).isEqualTo(UPDATED_PRICE);
         assertThat(testBakeryItem.getCategory()).isEqualTo(UPDATED_CATEGORY);
+        assertThat(testBakeryItem.getIngredients()).isEqualTo(UPDATED_INGREDIENTS);
     }
 
     @Test

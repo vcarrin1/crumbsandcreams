@@ -1,1 +1,13 @@
 /* about.component.scss */
+
+.about-image {
+    background: url('../../content/images/menu-banner.jpg');
+
+    /* Full height */
+    height: 150px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
