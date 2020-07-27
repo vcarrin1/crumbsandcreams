@@ -5,7 +5,8 @@ entity BakeryItem {
     lastUpdate Instant,
     description TextBlob,
     price BigDecimal min(0),
-    category Categories required
+    category Categories required,
+    ingredients TextBlob
 }
 
 enum Categories {
