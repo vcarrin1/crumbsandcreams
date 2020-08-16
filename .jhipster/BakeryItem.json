@@ -23,7 +23,8 @@
         },
         {
             "fieldName": "description",
-            "fieldType": "String"
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "price",
@@ -36,10 +37,15 @@
         {
             "fieldName": "category",
             "fieldType": "Categories",
-            "fieldValues": "cupcakes,brownies,drizzle_cakes",
+            "fieldValues": "cupcakes,brownies,drizzle_cakes,cookies",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "ingredients",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         }
     ],
     "relationships": [],

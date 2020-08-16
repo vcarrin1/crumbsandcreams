@@ -3,7 +3,7 @@ Main page styles
 ========================================================================== */
 
 .home-image {
-    background: url('../../content/images/home_image.jpeg');
+    background: url('../../content/images/home-image-unsplash.jpg');
 
     /* Full height */
     height: 500px;
@@ -21,7 +21,7 @@ Main page styles
     only screen and (min-resolution: 192dpi),
     only screen and (min-resolution: 2dppx) {
     .home-image {
-        background: url('../../content/images/home_image.jpeg') no-repeat center center;
+        background: url('../../content/images/home-image-unsplash.jpg') no-repeat center center;
         background-size: cover;
     }
 }
@@ -35,7 +35,7 @@ Main page styles
 }
 
 .logo-content {
-    opacity: 0.5;
+    opacity: 0.8;
     background: whitesmoke;
     border-radius: 10px;
     margin-top: auto;
